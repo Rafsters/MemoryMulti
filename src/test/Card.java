@@ -1,12 +1,13 @@
 package test;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 
-@SuppressWarnings("serial")
 public class Card extends JButton{
     private int id;
-    Icon front, back;
     private boolean matched = false;
+    Image pikachu, bulbasaur;
 
 
     public void setId(int id){
@@ -17,6 +18,22 @@ public class Card extends JButton{
         return this.id;
     }
 
+    public void setCardImage(int id){
+        try {
+            pikachu = ImageIO.read(getClass().getResource("/res/pikachu.jpg"));
+            bulbasaur = ImageIO.read(getClass().getResource("/res/bulbasaur.png"));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        switch (id) {
+            case 0:
+                this.setIcon(new ImageIcon(pikachu));
+                break;
+            case 1:
+                this.setIcon(new ImageIcon(bulbasaur));
+                break;
+        }
+    }
 
     public void setMatched(boolean matched){
         this.matched = matched;
